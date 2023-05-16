@@ -277,7 +277,36 @@ namespace Assignment1
             //and return that instead of creating a new GameObject.
             //TASK 2a/b START
 
-            return null;
+            //2a
+            /*
+             * GameObject gameObj = Instantiate((GameObject)prefab);
+             * return go;
+             * 
+             */
+
+            //2b (optional)
+            GameObject gameOBJ = null;
+            if(objectPool.ContainsKey(prefab.name))
+            {
+                if (objectPool[prefab.name].Count > 0)
+                {
+                    gameOBJ = objectPool[prefab.name][0];
+                    objectPool[prefab.name].RemoveAt(0);
+                }
+
+                else
+                {
+                    gameOBJ = Instantiate((GameObject)prefab);
+                }
+            }
+
+            else
+            {
+                objectPool.Add(prefab.name, new List<GameObject>());
+                gameOBJ = Instantiate((GameObject)prefab);
+            }
+
+            return gameOBJ;
 
             //TASK 2a/b END
         }
@@ -293,6 +322,25 @@ namespace Assignment1
             //if the pool contains fewer than POOL_MAX items.
             //More details given in the assignment document.
             //TASK 2c/d START
+
+            if (objectPool.ContainsKey(aObj.name.Split('_')[0]))
+            {
+                if (objectPool[aObj.name.Split('_')[0]].Count < POOL_MAX)
+                {
+                    //2d
+                    objectPool[aObj.name.Split('_')[0]].Add(aObj);
+                }
+                else
+                {
+                    //2c
+                    Destroy(aObj);
+                }
+            }
+            else
+            {
+                //2c
+                Destroy(aObj);
+            }
 
             //TASK 2c/d END
         }

@@ -50,6 +50,16 @@ namespace Assignment1
         //which are added to the package and dropoff objects respectively.
         //TASK 3a START
 
+        public void OnMouseEnter()
+        {
+            gameController.SetDeliveryHint(deliveryIndex);
+        }
+
+        public void OnMouseExit()
+        {
+            gameController.ClearDeliveryHint(deliveryIndex);
+        }
+
         //TASK 3a END
 
         //update target icon display on current object
@@ -62,6 +72,25 @@ namespace Assignment1
             //check if the object has deliveryIndex equal to the current hint. 
             //If yes, show the target icon and set its colour to white, otherwise hide the icon.
             //TASK 3b START
+
+            if (deliveryIndex == currentDelivery)
+            {
+                targetIcon.SetActive(true);
+                targetIcon.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
+                //                                                         ^^^^yellow^^^^
+            }
+            else
+            {
+                if(deliveryIndex == currentHint)
+                {
+                    targetIcon.SetActive(true);
+                    targetIcon.GetComponent <SpriteRenderer>().color = Color.white;
+                }
+                else
+                {
+                    targetIcon.SetActive(false);
+                }
+            }
 
             //TASK 3b END
         }

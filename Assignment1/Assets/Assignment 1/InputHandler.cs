@@ -56,6 +56,11 @@ namespace Assignment1
             //TASK 1e START
 
             /*Answer: */
+            // The other class is "GameOverMenuScript".
+            // "Yes Action" starts the game again.
+            // "No Action" quits the game.
+            // If it is in editor mode, the game stops playing.
+            // If it is not in editor mode, the application closes.
 
             //TASK 1e END
         }
